@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class 백준_16207 {
-    static Long[] dp;
+    static Long[] dp;//dp용 배열
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,9 +25,9 @@ public class 백준_16207 {
             bars[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(bars, Collections.reverseOrder());
+        Arrays.sort(bars, Collections.reverseOrder());//막대 내림차순 정렬
 
-        for (int i = 0; i < N - 3; i++) {
+        for (int i = 0; i < N - 3; i++) {//하나씩 제외시키며 탐색 적용
             answer = Math.max(answer, makeSquare(i, bars, N));
         }
 
@@ -36,17 +36,17 @@ public class 백준_16207 {
     }
 
     static long makeSquare(int startIndex, Integer[] bars, int N) {
-        if (startIndex >= N - 3) {
+        if (startIndex >= N - 3) {//현 상황에서 남은 막대 개수가 4개 미만
             return 0;
         }
 
-        if (dp[startIndex] != -1L) {
+        if (dp[startIndex] != -1L) {//dp값이 존재
             return dp[startIndex];
         }
 
         int sideA = 0, sideB = 0, sideAIndex = N, sideBIndex = N;
 
-        for (int i = startIndex; i < N - 1; i++) {
+        for (int i = startIndex; i < N - 1; i++) {//막대길이 find
             if (bars[i].equals(bars[i + 1])  || bars[i].equals(bars[i + 1] + 1)) {
                 sideA = bars[i + 1];
                 sideAIndex = i + 1;
@@ -54,7 +54,7 @@ public class 백준_16207 {
             }
         }
 
-        for (int i = sideAIndex + 1; i < N - 1; i++) {
+        for (int i = sideAIndex + 1; i < N - 1; i++) {//막대길이 find
             if (bars[i].equals(bars[i + 1])  || bars[i].equals(bars[i + 1] + 1)) {
                 sideB = bars[i + 1];
                 sideBIndex = i + 1;
@@ -62,6 +62,7 @@ public class 백준_16207 {
             }
         }
 
+        //dp배열에 넓이를 저장하며 다음 탐색 결과 call
         return dp[startIndex] = (long) sideA * sideB + makeSquare(sideBIndex + 1, bars, N);
     }
 }
