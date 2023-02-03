@@ -7,7 +7,7 @@ public class LeetCode_First_Missing_Positive {
 
 class Solution_LeetCode_First_Missing_Positive {
     public int firstMissingPositive(int[] nums) {
-        int n = nums.length, ans = nums.length + 1;
+        int n = nums.length;
 
         for (int i = 0; i < n; i++) {//우선 범위밖의 수는 -1 처리
             if (nums[i] < 1 || nums[i] > n) {
@@ -25,7 +25,7 @@ class Solution_LeetCode_First_Missing_Positive {
             }
         }
 
-        return ans;
+        return n + 1;
     }
 
     void check(int[] nums, int num) {
