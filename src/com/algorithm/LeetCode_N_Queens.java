@@ -9,7 +9,7 @@ import java.util.List;
 public class LeetCode_N_Queens {
 }
 
-class Solution {
+class Solution_LeetCode_N_Queens {
     char[][] chessboard;
     boolean[] usedRow, usedCol;
     List<List<String>> answer = new ArrayList<>();
