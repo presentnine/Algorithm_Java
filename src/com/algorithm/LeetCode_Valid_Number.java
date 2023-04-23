@@ -9,7 +9,7 @@ public class LeetCode_Valid_Number {
 
 class Solution_LeetCode_Valid_Number {
     public boolean isNumber(String s) {
-        String pattern = "^[-+]?([0-9]+(\\.[0-9]*)?|[0-9]*\\.[0-9]+)([eE][-+]?[0-9]+)?$";
+        String pattern = "^[-+]?([0-9]+(\\.[0-9]*)?|[0-9]*\\.[0-9]+)([eE][-+]?[0-9]+)?$";//정규표현식
         return Pattern.matches(pattern, s);
     }
 }
