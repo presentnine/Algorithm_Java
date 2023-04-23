@@ -14,21 +14,22 @@ class Solution_프로그래머스_요격_시스템 {
         int answer = 1, s, e;
 
         //풀이 1 => 단순 이차원 배열 정렬
-         Arrays.sort(targets, (o1, o2) -> {
+         Arrays.sort(targets, (o1, o2) -> {//이차원 배열 정렬
              if(o1[0]==o2[0]){
                  return o1[1] - o2[1];
              }
              return o1[0] - o2[0];
          });
 
+         //시작 요소를 s와 e로 초기화 
          s = targets[0][0];
          e = targets[0][1];
 
-         for(int i=1;i<targets.length;i++){
-             if(targets[i][0]<e){
+         for(int i=1;i<targets.length;i++){//이후 배열을 돌며
+             if(targets[i][0]<e){//현재 s~e 범위내라면
                  s = Math.max(s, targets[i][0]);
                  e = Math.min(e, targets[i][1]);
-             }else{
+             }else{//현재 범위 밖이라면
                  ++answer;
                  s = targets[i][0];
                  e = targets[i][1];
@@ -70,7 +71,7 @@ class Solution_프로그래머스_요격_시스템 {
         }
 
         @Override
-        public int compareTo(Infor o){
+        public int compareTo(Infor o){//시작과 끝이 더 빠른 순으로
             if(this.s == o.s){
                 return this.e - o.e;
             }
