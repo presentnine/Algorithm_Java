@@ -12,6 +12,7 @@ class Solution_LeetCode_81_Search_in_Rotated_Sorted_Array_II {
         for (int i = 0; i < nums.length - 1; i++) {//앞에서부터 탐색하며 pivot 위치 탐색
             if (nums[i] > nums[i + 1]) {
                 pivot = i;
+                break;
             }
         }
 
