@@ -19,7 +19,7 @@ class Solution_LeetCode_95_Unique_Binary_Search_Trees_II {
         return result;
     }
 
-    void generateTreesWithPermutation(int[] arr, boolean[] visited, int count, int n) {
+    void generateTreesWithPermutation(int[] arr, boolean[] visited, int count, int n) {//순열 생성 및 트리 생성
         if (count == n) {
             TreeNode root = new TreeNode(arr[0]);
 
@@ -27,9 +27,9 @@ class Solution_LeetCode_95_Unique_Binary_Search_Trees_II {
                 insertNode(root, arr[i]);
             }
 
-            String key = makeKey(root);
+            String key = makeKey(root);//만들어진 트리에 대한 키 생성
 
-            if (!duplicatedSet.contains(key)) {
+            if (!duplicatedSet.contains(key)) {//기존에 없던 새로운 트리 형태라면 추가
                 duplicatedSet.add(key);
                 result.add(root);
                 return;
@@ -46,7 +46,7 @@ class Solution_LeetCode_95_Unique_Binary_Search_Trees_II {
         }
     }
 
-    void insertNode(TreeNode node, int val) {
+    void insertNode(TreeNode node, int val) {//트리에 노드 삽입
         if (val < node.val) {
             if (node.left == null) {
                 node.left = new TreeNode(val);
@@ -62,7 +62,7 @@ class Solution_LeetCode_95_Unique_Binary_Search_Trees_II {
         }
     }
 
-    String makeKey(TreeNode node) {
+    String makeKey(TreeNode node) {//트리에 대한 키 생성
         if (node == null) {
             return "null";
         }
