@@ -8,7 +8,7 @@ public class LeetCode_97_Interleaving_String {
 }
 
 class Solution_LeetCode_97_Interleaving_String {
-    int[][] memory;
+    Boolean[][] memory;
 
     public boolean isInterleave(String s1, String s2, String s3) {
         if (s3.length() != s1.length() + s2.length()) {//길이가 성립되지 않는다면
@@ -16,10 +16,7 @@ class Solution_LeetCode_97_Interleaving_String {
         }
 
         //탐색 결과 저장 배열 초기화
-        memory = new int[s2.length() + 1][s3.length() + 1];
-        for (int i = 0; i < memory.length; i++) {
-            Arrays.fill(memory[i], -1);
-        }
+        memory = new Boolean[s2.length() + 1][s3.length() + 1];
 
         return check(s1, s2, s3, 0, 0, 0);
     }
@@ -41,12 +38,8 @@ class Solution_LeetCode_97_Interleaving_String {
             }
         }
 
-        if (memory[s2Index][s3Index] != -1) {//기존 탐색 값이 존재하는 경우
-            if (memory[s2Index][s3Index] == 1) {
-                return true;
-            } else {
-                return false;
-            }
+        if (memory[s2Index][s3Index] != null) {//기존 탐색 값이 존재하는 경우
+            return memory[s2Index][s3Index];
         }
 
         boolean result = false;
@@ -59,12 +52,6 @@ class Solution_LeetCode_97_Interleaving_String {
             result |= check(s1, s2, s3, s1Index, s2Index + 1, s3Index + 1);
         }
 
-        if (result) {//탐색 결과 저장
-            memory[s2Index][s3Index] = 1;
-        } else {
-            memory[s2Index][s3Index] = 0;
-        }
-
-        return result;
+        return memory[s2Index][s3Index] = result;
     }
 }
