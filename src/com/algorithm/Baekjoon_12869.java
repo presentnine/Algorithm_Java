@@ -19,12 +19,12 @@ public class Baekjoon_12869 {
 
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) {//hp 값 초기화
             hps[i] = Integer.parseInt(st.nextToken());
         }
 
-        memory = new int[hps[0] + 1][hps[1] + 1][hps[2] + 1];
-
+        memory = new int[hps[0] + 1][hps[1] + 1][hps[2] + 1];//dp를 위한 3중 배열 초기화
+        
         for (int i = 0; i < memory.length; i++) {
             for (int j = 0; j < memory[i].length; j++) {
                 Arrays.fill(memory[i][j], -1);
@@ -39,16 +39,17 @@ public class Baekjoon_12869 {
         hp2 = Math.max(hp2, 0);
         hp3 = Math.max(hp3, 0);
 
-        if (hp1 == 0 && hp2 == 0 && hp3 == 0) {
+        if (hp1 == 0 && hp2 == 0 && hp3 == 0) {//hp가 모두 0이라면
             return 0;
         }
 
-        if (memory[hp1][hp2][hp3] != -1) {
+        if (memory[hp1][hp2][hp3] != -1) {//해당 상황에 대한 답이 이미 계산됐다면
             return memory[hp1][hp2][hp3];
         }
 
         int result = 987654321;
 
+        //모든 경우의 수를 확인해 최적의 수 확인
         result = Math.min(result, check(hp1 - 9, hp2 - 3, hp3 - 1) + 1);
         result = Math.min(result, check(hp1 - 9, hp2 - 1, hp3 - 3) + 1);
         result = Math.min(result, check(hp1 - 3, hp2 - 9, hp3 - 1) + 1);
@@ -56,6 +57,6 @@ public class Baekjoon_12869 {
         result = Math.min(result, check(hp1 - 1, hp2 - 3, hp3 - 9) + 1);
         result = Math.min(result, check(hp1 - 1, hp2 - 9, hp3 - 3) + 1);
 
-        return memory[hp1][hp2][hp3] = result;
+        return memory[hp1][hp2][hp3] = result;//값 저장
     }
 }
